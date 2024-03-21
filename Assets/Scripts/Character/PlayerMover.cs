@@ -2,55 +2,47 @@ using System;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(PlayerController))]
-public class PlayerMover : MonoBehaviour
+public class PlayerMover : Mover, ITickable
 {
-    public event Action<Vector2> OnMovementDirectionComputed;
-
-    [SerializeField, Range(0, 10)] private float _speed;
+    private PlayerInput _input;
+    private readonly TickableManager _tickableManager;
 
     private Vector2 _lastDirectionValues;
 
-    private PlayerInput _input;
-    private PlayerController _controller;
-
     [Inject]
-    private void Construct(PlayerInput input)
+    private PlayerMover(
+        [Inject(Id = BindId.Player)] Rigidbody2D rigidbody2D, 
+        [Inject(Id = BindId.Player)] Transform transform, 
+        TickableManager tickableManager,
+        PlayerInput input): 
+        base(rigidbody2D, transform)
     {
         _input = input;
-        _controller = GetComponent<PlayerController>();
+        _tickableManager = tickableManager;
     }
 
-    private void OnEnable()
+    public void Enable()
     {
         _input.Enable();
+        _tickableManager.Add(this);
     }
 
-    private void OnDisable()
+    public void Disable()
     {
         _input.Disable();
+        _tickableManager.Remove(this);
     }
 
-    private void Update()
+    public void Tick()
     {
         Vector2 direction = ReadInnputValues();
-
-        OnMovementDirectionComputed?.Invoke(direction);
-
-        if(!direction.Equals(_lastDirectionValues))
-        {
-            Move(direction);
-        }
-
+        Debug.Log(direction);
+        if(direction.Equals(_lastDirectionValues)) return;
+        
+        Move(direction);
         _lastDirectionValues = direction;
     }
-
-    private void Move(Vector2 inputDirection)
-    {
-        Vector2 normolizedDirection = inputDirection.normalized;
-
-        _controller.Move(normolizedDirection, _speed);
-    }
-
     private Vector2 ReadInnputValues() => _input.Player.Move.ReadValue<Vector2>();
 }
+
+

@@ -1,34 +1,39 @@
-using UnityEngine;
+using Zenject;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerController 
 {
-    [SerializeField] private bool _isFacedRight;
-
-    private Rigidbody2D _rigidbody;
-
-    private void Awake()
+    private PlayerMover _playerMover;
+    private PlayerView _playerView;
+    
+    public PlayerController(
+        [Inject(Id = BindId.Player)] Mover playerMover, 
+        [Inject(Id = BindId.Player)] PlayerView playerView)
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        _playerMover = playerMover as PlayerMover;
+        _playerView = playerView;
+        Enable();
     }
 
-    public void Move(Vector2 moveDirection, float speed)
+    public void Enable()
     {
-        _rigidbody.velocity = moveDirection * speed;
-
-        if ((moveDirection.x > 0 && !_isFacedRight)
-            || (moveDirection.x < 0 && _isFacedRight))
-        {
-            _isFacedRight = !_isFacedRight;
-
-            Flip();
-        }
+        _playerView.OnViewDisable += OnViewDisableHandler;
+        _playerView.OnViewEnable += OnViewEnableHandler;
+        _playerMover.Enable();
     }
 
-    private void Flip()
+    public void Disable()
     {
-        Vector2 currentScale = transform.localScale;
-
-        transform.localScale = new Vector2(-currentScale.x, currentScale.y);
+        _playerView.OnViewDisable -= OnViewDisableHandler;
+        _playerView.OnViewEnable -= OnViewEnableHandler;
+    }
+    
+    private void OnViewEnableHandler()
+    {
+        _playerMover.OnMove += _playerView.ComputePlayerDirectionToAnimator;
+    }
+    
+    private void OnViewDisableHandler()
+    {
+        _playerMover.OnMove -= _playerView.ComputePlayerDirectionToAnimator;
     }
 }
