@@ -1,9 +1,11 @@
+using UnityEngine;
 using Zenject;
 
 public class GameplayScenInstaller : MonoInstaller
 {
+    [SerializeField] private PlayerView _playerView;
     public override void InstallBindings()
     {
-        Container.Bind<PlayerInput>().FromNew().AsSingle();
+        PlayerInstaller.Install(Container, _playerView);
     }
 }

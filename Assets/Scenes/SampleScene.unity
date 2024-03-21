@@ -135,8 +135,6 @@ GameObject:
   - component: {fileID: 57713520}
   - component: {fileID: 57713519}
   - component: {fileID: 57713518}
-  - component: {fileID: 57713517}
-  - component: {fileID: 57713516}
   - component: {fileID: 57713515}
   m_Layer: 0
   m_Name: Player
@@ -158,33 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveDirectionKey: MovementDirection
-  _playerMover: {fileID: 57713516}
---- !u!114 &57713516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 57713514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40603be2f55ebc44d82d080ab7bf17d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3
---- !u!114 &57713517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 57713514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34caa5aa960fc6b4e9551e6266960339, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isFacedRight: 1
+  _animator: {fileID: 57713518}
+  rigidBody: {fileID: 57713519}
 --- !u!95 &57713518
 Animator:
   serializedVersion: 5
@@ -422,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b62cdd5e7ff475418c12935165334de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerView: {fileID: 57713515}
 --- !u!114 &917922948
 MonoBehaviour:
   m_ObjectHideFlags: 0
