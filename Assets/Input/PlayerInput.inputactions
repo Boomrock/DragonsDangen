@@ -3,12 +3,12 @@
     "maps": [
         {
             "name": "Player",
-            "id": "fced9b5c-69c4-4bd4-b273-e54593c173ac",
+            "id": "c1eb9f43-64eb-4565-9bc6-271f1fd037f3",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "de8483b1-18bc-4737-99c4-05ce3d7f20cc",
+                    "id": "c7be4736-066e-460a-aeb7-7df4ee152cfc",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -18,7 +18,7 @@
             "bindings": [
                 {
                     "name": "WASD Input",
-                    "id": "021f6693-8e69-45dd-af11-55446725cc67",
+                    "id": "6c999e60-ce02-4c92-9c3b-4e2d9579f314",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -29,51 +29,51 @@
                 },
                 {
                     "name": "up",
-                    "id": "fe3151ae-a0c5-4653-aab4-5cf53a73f211",
+                    "id": "08dcf2bf-1019-4b89-8329-2285927701e3",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse and keyboard",
+                    "groups": "Keyboard and mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "2f53d224-4c13-41e2-bc78-abc6db796560",
+                    "id": "bcc809c4-ed10-4f60-b425-60782d98faf6",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse and keyboard",
+                    "groups": "Keyboard and mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "7d714cee-2c1b-4b0f-aa21-dc2aa90642e7",
+                    "id": "3c79da24-14e3-4cfb-9402-69ead8b31f41",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse and keyboard",
+                    "groups": "Keyboard and mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "8fb76793-e8e3-4466-a534-f70e7e72c47c",
+                    "id": "2b4560a8-d93c-43a2-bdd8-ea588fb06ef1",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse and keyboard",
+                    "groups": "Keyboard and mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "Arrows Input",
-                    "id": "63aeb8aa-4d90-4052-9e40-92a45c973e81",
+                    "id": "c30bae6d-317d-469c-a1f7-6bbaa8eb5047",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -84,44 +84,44 @@
                 },
                 {
                     "name": "up",
-                    "id": "6ded1095-226b-4778-a933-5556f3e88033",
+                    "id": "f52365a4-061b-435e-85ca-579d1f881455",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse and keyboard",
+                    "groups": "Keyboard and mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "a7ad3ac4-7661-46e1-8622-c7b2716abc57",
+                    "id": "180c8eb9-50c6-45e7-a384-bdf42e3efc50",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse and keyboard",
+                    "groups": "Keyboard and mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "b78031b2-d5d2-4112-8702-5e8ad09c3c48",
+                    "id": "900fea84-d785-421a-ab35-7a4ad562287d",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse and keyboard",
+                    "groups": "Keyboard and mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "6237f853-4216-4ffc-af09-b74ef8bc4a79",
+                    "id": "3ec80d15-286f-4fd4-86e4-71fef21c3e9f",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse and keyboard",
+                    "groups": "Keyboard and mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -131,8 +131,8 @@
     ],
     "controlSchemes": [
         {
-            "name": "Mouse and keyboard",
-            "bindingGroup": "Mouse and keyboard",
+            "name": "Keyboard and mouse",
+            "bindingGroup": "Keyboard and mouse",
             "devices": [
                 {
                     "devicePath": "<Mouse>",
@@ -141,17 +141,6 @@
                 },
                 {
                     "devicePath": "<Keyboard>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "Gamepad",
-            "bindingGroup": "Gamepad",
-            "devices": [
-                {
-                    "devicePath": "<Gamepad>",
                     "isOptional": false,
                     "isOR": false
                 }
