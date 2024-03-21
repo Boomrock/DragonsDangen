@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -36,7 +35,7 @@ public class PlayerMover : Mover, ITickable
     public void Tick()
     {
         Vector2 direction = ReadInnputValues();
-        Debug.Log(direction);
+        
         if(direction.Equals(_lastDirectionValues)) return;
         
         Move(direction);

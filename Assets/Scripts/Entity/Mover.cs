@@ -5,11 +5,11 @@ public abstract class Mover
 {
     public event Action<Vector2> OnMove;
 
-    protected float _speed = 1f;
+    protected float _speed = 3f;
 
     protected readonly Rigidbody2D _rigidbody2D;
     protected readonly Transform _transform;
-    protected bool _isFacedRight;
+    protected bool _isFacedRight = true;
 
     protected Mover(
         Rigidbody2D rigidbody2D, 
