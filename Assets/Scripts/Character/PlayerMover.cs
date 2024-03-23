@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMover : MonoBehaviour
 {
     public event Action<Vector2> OnMovementDirectionComputed;
@@ -18,7 +18,10 @@ public class PlayerMover : MonoBehaviour
     private void Construct(PlayerInput input)
     {
         _input = input;
-        _controller = GetComponent<PlayerController>();
+
+        var rigidbody = GetComponent<Rigidbody2D>();
+
+        _controller = new PlayerController(rigidbody, transform);
     }
 
     private void OnEnable()

@@ -1,15 +1,22 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerController
 {
-    [SerializeField] private bool _isFacedRight;
+    private bool _isFacedRight = true;
 
     private Rigidbody2D _rigidbody;
 
-    private void Awake()
+    private Transform _objectTransform;
+
+    public PlayerController(Rigidbody2D rigidbody, Transform objectTransform)
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = rigidbody;
+        _objectTransform = objectTransform;
+    }
+
+    public void Attack(Attack attackType, Vector2 direction)
+    {
+
     }
 
     public void Move(Vector2 moveDirection, float speed)
@@ -27,8 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        Vector2 currentScale = transform.localScale;
+        Vector2 currentScale = _objectTransform.transform.localScale;
 
-        transform.localScale = new Vector2(-currentScale.x, currentScale.y);
+        _objectTransform.transform.localScale = new Vector2(-currentScale.x, currentScale.y);
     }
 }
