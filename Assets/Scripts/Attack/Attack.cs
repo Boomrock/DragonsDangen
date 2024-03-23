@@ -2,9 +2,18 @@ using UnityEngine;
 
 public abstract class Attack
 {
-    protected Shell _shell;
+    protected GameObject _shell;
 
-    public Attack(Shell shell) => _shell = shell;
+    protected GameObjectPool _pool;
+
+    protected MonoBehaviour _context;
+
+    public Attack(GameObject shell, MonoBehaviour context, GameObjectPool pool)
+    {
+        _shell = shell;
+        _context = context;
+        _pool = pool;
+    }
 
     public abstract void MakeAttack(Vector2 direction);
 }

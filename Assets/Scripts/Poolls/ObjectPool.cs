@@ -10,7 +10,11 @@ public class ObjectPool<T>
     private Action<T> _getAction;
     private Action<T> _returnAction;
 
-    public ObjectPool(int objectsStartCount, Func<T> preloadFunc, Action<T> getAction, Action<T> returnAction)
+    public ObjectPool(
+        int objectsStartCount, 
+        Func<T> preloadFunc, 
+        Action<T> getAction, 
+        Action<T> returnAction)
     {
         _objectsQueue = new Queue<T>();
 
