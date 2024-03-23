@@ -10,30 +10,42 @@ public abstract class Shell : MonoBehaviour
 
     protected Vector2 _moveDirection;
 
+    protected Action<GameObject> _onReachTargetAction;
+
     protected Rigidbody2D _rigidbody;
 
-    protected Collision2D _senderCollision;
+    protected Collider2D _senderCollision;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>(); 
     }
 
-    public void Initialize(Vector2 direction, Collision2D senderCollision)
+    public void Initialize(Vector2 direction, Collider2D senderCollider, Action<GameObject> onReachTargetAction)
     {
-        _senderCollision = senderCollision;
+        _senderCollision = senderCollider;
         _moveDirection = direction;
+        _onReachTargetAction = onReachTargetAction;
 
-        transform.position = senderCollision.transform.position;
+        transform.position = senderCollider.transform.position;
+        transform.rotation = GetRotationByDirection(direction);
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider != _senderCollision)
+        {
+            OnCollidWhithSomething?.Invoke();
+            _onReachTargetAction(gameObject);
+        }
     }
 
     protected abstract void Move(Vector2 diretcion);
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    private Quaternion GetRotationByDirection(Vector2 direction)
     {
-        if(collision != _senderCollision)
-        {
-            OnCollidWhithSomething?.Invoke();
-        }
+        float angel = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        return Quaternion.AngleAxis(angel, Vector3.forward);
     }
 }

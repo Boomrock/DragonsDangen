@@ -24,7 +24,9 @@ public class ObjectPool<T>
 
         for (int i = 0; i < objectsStartCount; i++)
         {
-            _objectsQueue.Enqueue(_preloadFunc());
+            var item = _preloadFunc();
+
+            Return(item);
         }
     }
 
