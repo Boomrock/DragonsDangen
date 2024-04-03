@@ -3,21 +3,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-public class PlayerAttacker : MonoBehaviour
+public class PlayerAttacker : CharacterAttacker
 {
-    [SerializeField] private bool _canShoot;
-
-    [SerializeField] private int _startPoolSize;
-
-    [SerializeField] private float _cooldown;
-
-    [SerializeField] private GameObject _shell;
-    [SerializeField] private GameObjectPool _pool;
-
     private PlayerInput _input;
     private PlayerController _controller;
-
-    private Attack _attackType;
 
     [Inject]
     private void Construct(PlayerInput input)
@@ -26,7 +15,6 @@ public class PlayerAttacker : MonoBehaviour
 
         var rigidbody = GetComponent<Rigidbody2D>();
 
-        _controller = new PlayerController(rigidbody, transform);
         _pool = new GameObjectPool(_startPoolSize, _shell); 
         _attackType = new BaseAttack(_shell, this, _pool);
     }
@@ -49,10 +37,10 @@ public class PlayerAttacker : MonoBehaviour
             return;
         }
 
-        HandleAttack();
+        Attack();
     }
 
-    private void HandleAttack()
+    protected override void Attack()
     {
         var clickPosition = GetLocalClickPosition();
         var direction = clickPosition - transform.position;
@@ -60,7 +48,7 @@ public class PlayerAttacker : MonoBehaviour
         _attackType.MakeAttack(direction);
         _canShoot = false;
 
-        StartCoroutine(nameof(Cooldown));
+        StartCoroutine(nameof(MakeCooldown));
     }
 
     private Vector3 GetLocalClickPosition()
@@ -68,11 +56,5 @@ public class PlayerAttacker : MonoBehaviour
         var globalClickPosition = Mouse.current.position.ReadValue();
 
         return Camera.main.ScreenToWorldPoint(globalClickPosition);
-    }
-    private IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(_cooldown);
-
-        _canShoot = true; 
     }
 }

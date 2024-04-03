@@ -24,7 +24,7 @@ public abstract class Shell : MonoBehaviour
     public void Initialize(Vector2 direction, Collider2D senderCollider, Action<GameObject> onReachTargetAction)
     {
         _senderCollision = senderCollider;
-        _moveDirection = direction;
+        _moveDirection = direction.normalized;
         _onReachTargetAction = onReachTargetAction;
 
         transform.position = senderCollider.transform.position;

@@ -158,8 +158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18298b4d471f42f4d965a384a9590439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterMover: {fileID: 0}
+  _characterHealth: {fileID: 0}
+  _characterAttacker: {fileID: 0}
   _moveDirectionKey: MovementDirection
-  _playerMover: {fileID: 57713516}
 --- !u!114 &57713516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40603be2f55ebc44d82d080ab7bf17d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isFacedRight: 1
   _speed: 3
 --- !u!95 &57713518
 Animator:
