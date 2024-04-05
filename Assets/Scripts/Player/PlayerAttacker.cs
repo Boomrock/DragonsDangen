@@ -6,7 +6,6 @@ using Zenject;
 public class PlayerAttacker : CharacterAttacker
 {
     private PlayerInput _input;
-    private PlayerController _controller;
 
     [Inject]
     private void Construct(PlayerInput input)
