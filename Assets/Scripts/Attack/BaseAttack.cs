@@ -10,8 +10,6 @@ public class BaseAttack : Attack
 
         var shell = shellPrefab.GetComponent<Shell>();
 
-        Debug.Log(_context.name);
         shell.Initialize(direction, _context.gameObject.GetComponent<Collider2D>(), _pool.Return);
-
     }
 }
