@@ -2,34 +2,22 @@ using System;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(PlayerController))]
-public class PlayerMover : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerMover : CharacterMover
 {
-    public event Action<Vector2> OnMovementDirectionComputed;
-
-    [SerializeField, Range(0, 10)] private float _speed;
-
-    private Vector2 _lastDirectionValues;
+    public override event Action<Vector2> OnMovementDirectionComputed;
 
     private PlayerInput _input;
-    private PlayerController _controller;
 
     [Inject]
     private void Construct(PlayerInput input)
     {
         _input = input;
-        _controller = GetComponent<PlayerController>();
     }
 
-    private void OnEnable()
-    {
-        _input.Enable();
-    }
+    private void OnEnable() => _input.Enable();
 
-    private void OnDisable()
-    {
-        _input.Disable();
-    }
+    private void OnDisable() => _input.Disable();
 
     private void Update()
     {
@@ -45,11 +33,17 @@ public class PlayerMover : MonoBehaviour
         _lastDirectionValues = direction;
     }
 
-    private void Move(Vector2 inputDirection)
+    protected override void Move(Vector2 inputDirection)
     {
         Vector2 normolizedDirection = inputDirection.normalized;
 
-        _controller.Move(normolizedDirection, _speed);
+        _rigidbody.velocity = normolizedDirection * _speed;
+        
+        if((_isFacedRight && normolizedDirection.x < 0)
+            || (!_isFacedRight && normolizedDirection.x > 0))
+        {
+            Flip();
+        }
     }
 
     private Vector2 ReadInnputValues() => _input.Player.Move.ReadValue<Vector2>();

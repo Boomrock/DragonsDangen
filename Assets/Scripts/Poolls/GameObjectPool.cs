@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameObjectPool : ObjectPool<GameObject>
 {
-    public GameObjectPool(GameObject prefab, int startCount) 
+    public GameObjectPool(int startCount, GameObject prefab) 
         : base(startCount, () => Preload(prefab), Get, Return) { }
 
     public static GameObject Preload(GameObject prefab) => Object.Instantiate(prefab);

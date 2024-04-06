@@ -10,7 +10,11 @@ public class ObjectPool<T>
     private Action<T> _getAction;
     private Action<T> _returnAction;
 
-    public ObjectPool(int objectsStartCount, Func<T> preloadFunc, Action<T> getAction, Action<T> returnAction)
+    public ObjectPool(
+        int objectsStartCount, 
+        Func<T> preloadFunc, 
+        Action<T> getAction, 
+        Action<T> returnAction)
     {
         _objectsQueue = new Queue<T>();
 
@@ -20,7 +24,9 @@ public class ObjectPool<T>
 
         for (int i = 0; i < objectsStartCount; i++)
         {
-            _objectsQueue.Enqueue(_preloadFunc());
+            var item = _preloadFunc();
+
+            Return(item);
         }
     }
 
