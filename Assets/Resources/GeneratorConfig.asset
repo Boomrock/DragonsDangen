@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1780c8981a4c1ea3a1d94f4eadae92, type: 3}
+  m_Name: GeneratorConfig
+  m_EditorClassIdentifier: 
+  Floor: {fileID: 11400000, guid: 33fb0dc18dbf89546847511540144809, type: 2}
+  Wall: {fileID: 11400000, guid: 9bf806cdfc0db6b44a25b009cc13f0e4, type: 2}
+  SizeMap: {x: 70, y: 70}
+  Threshold: 0.715
+  RoomScale: 13
+  Seed: 320
