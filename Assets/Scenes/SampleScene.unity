@@ -950,6 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _floorTilemap: {fileID: 1287215194}
   _wallTileMap: {fileID: 1409934321}
+  _player: {fileID: 57713514}
 --- !u!156049354 &2144031786
 Grid:
   m_ObjectHideFlags: 0
