@@ -6,7 +6,7 @@ public class GameplayScenInstaller : MonoInstaller
     {
         Container.Bind<PlayerInput>().FromNew().AsSingle();
         Container.Bind<GeneratorConfig>()
-            .FromNewScriptableObjectResource("GeneratorConfig")
+            .FromScriptableObjectResource("GeneratorConfig")
             .AsSingle();
     }
 }

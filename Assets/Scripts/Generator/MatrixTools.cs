@@ -12,45 +12,45 @@ public static class MatrixTools
         List<(Vector2Int,Vector2Int)> nearestNeighbors = new();
 
         // Проходим по каждой точке в матрице
-        for (int i = 0; i < rows; i++)
+        for (int y = 0; y < rows; y++)
         {
-            for (int j = 0; j < cols; j++)
+            for (int x = 0; x < cols; x++)
             {
-                if (!matrix[i, j]) // Пропускаем точки, которые являются "ложными" (False)
+                if (!matrix[y, x]) // Пропускаем точки, которые являются "ложными" (False)
                 {
                     continue;
                 }
 
-                int[] currentPoint = { i, j }; // Текущая точка
+                var currentPoint = new Vector2Int(x,y); // Текущая точка
                 double minDistance = double.PositiveInfinity;
                 Vector2Int nearestIndex = new Vector2Int(0,0);
 
                 // Проходим по каждой точке в матрице
-                for (int k = 0; k < rows; k++)
+                for (int y1 = 0; y1 < rows; y1++)
                 {
-                    for (int l = 0; l < cols; l++)
+                    for (int x1 = 0; x1 < cols; x1++)
                     {
-                        if (!matrix[k, l] 
-                            || (i == k && j == l) 
-                            || nearestNeighbors.Any(item=> item.Item1 == new Vector2Int(k,l))) // Пропускаем "ложные" точки и текущую точку
+                        if (!matrix[y1, x1] 
+                            || (y == y1 && x == x1) 
+                            || nearestNeighbors.Any(item=> item.Item1 == new Vector2Int(x1, y1))) // Пропускаем "ложные" точки и текущую точку
                         {
                             continue;
                         }
 
-                        int[] point = { k, l }; // Текущая проверяемая точка
+                        var point = new Vector2Int(x1, y1); // Текущая проверяемая точка
                         double distance = Distance(currentPoint, point);
 
                         // Если расстояние меньше минимального расстояния, обновляем минимальное расстояние и индекс ближайшей точки
                         if (distance < minDistance)
                         {
                             minDistance = distance;
-                            nearestIndex = new Vector2Int(k,l); // Индекс точки в одномерном массиве
+                            nearestIndex = new Vector2Int(x1, y1); // Индекс точки в одномерном массиве
                         }
                     }
                 }
 
                 // Записываем индекс ближайшей точки в массив ближайших соседей
-                nearestNeighbors.Add((new Vector2Int(i,j), nearestIndex));
+                nearestNeighbors.Add((new Vector2Int(x,y), nearestIndex));
             }
         }
 
@@ -116,10 +116,10 @@ public static class MatrixTools
 
     }
     // Функция для вычисления расстояния между двумя точками
-    static double Distance(int[] point1, int[] point2)
+    static double Distance(Vector2Int point1, Vector2Int point2)
     {
-        int dx = point1[0] - point2[0];
-        int dy = point1[1] - point2[1];
+        int dx = point1.x - point2.x;
+        int dy = point1.y - point2.y;
         return Math.Sqrt(dx * dx + dy * dy);
     }
 }

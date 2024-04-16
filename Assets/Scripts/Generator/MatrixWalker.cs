@@ -3,12 +3,16 @@ using UnityEngine;
 
 public static class MatrixWalker
 {
-    public static void TakeStep<T>(T[,] matrix, T value, Vector2Int start, Vector2Int end)
+    public static void TakeStep<T>(T[,] matrix, T value, Vector2Int start, Vector2Int end, int size = 0)
     {
         var currentPoint = start;
         while (TakeStep(start, end, ref currentPoint))
         {
-            matrix[currentPoint.x, currentPoint.y] = value;
+            MatrixTools.SpiralArrayTraversal(matrix, currentPoint, point =>
+            {
+                matrix[point.y, point.x] = value;
+                return MatrixTools.Result.None;
+            }, size);
         }
         
     }
